@@ -20,7 +20,7 @@ AI: *Detects uncertainty between react/hooks and react/performance skills*
 
 ```bash
 # AI should execute:
-npx agent-skills-standard feedback \
+npx swo-agent-toolkit feedback \
   --skill="react/hooks" \
   --issue="Conflicting guidance on async state management" \
   --context="React 18" \
@@ -46,7 +46,7 @@ User: "No, that's wrong. You need SafeBuildContext wrapper for async gaps."
 
 ```bash
 # AI should immediately execute:
-npx agent-skills-standard feedback \
+npx swo-agent-toolkit feedback \
   --skill="flutter/bloc-state-management" \
   --issue="Incorrect BuildContext async guidance" \
   --context="Flutter 3.16+, async/await in BLoC" \
@@ -73,7 +73,7 @@ Linter: "Error: exhaustive-deps violation"
 
 ```bash
 # AI should execute:
-npx agent-skills-standard feedback \
+npx swo-agent-toolkit feedback \
   --skill="react/hooks" \
   --issue="useEffect guidance missing exhaustive-deps enforcement" \
   --context="React 18, ESLint exhaustive-deps enabled" \
@@ -100,7 +100,7 @@ User: "That's the old Pages Router. App Router uses app/ directory."
 
 ```bash
 # AI should execute:
-npx agent-skills-standard feedback \
+npx swo-agent-toolkit feedback \
   --skill="nextjs/routing" \
   --issue="Guidance outdated for Next.js 14 App Router" \
   --context="Next.js 14, App Router" \
@@ -127,7 +127,7 @@ AI: *Uncertain about correct approach*
 
 ```bash
 # AI should execute:
-npx agent-skills-standard feedback \
+npx swo-agent-toolkit feedback \
   --skill="react/error-handling" \
   --issue="Missing server component error boundary pattern" \
   --context="React 18, Next.js 14, Server Components" \
@@ -154,7 +154,7 @@ AI: *Unclear if should use JWT, session, or passport-based guards*
 
 ```bash
 # AI should execute:
-npx agent-skills-standard feedback \
+npx swo-agent-toolkit feedback \
   --skill="nestjs/auth" \
   --issue="Guard implementation guidance too vague" \
   --context="NestJS 10, REST API" \
@@ -182,7 +182,7 @@ AI: *Conflicting guidance detected*
 
 ```bash
 # AI should execute:
-npx agent-skills-standard feedback \
+npx swo-agent-toolkit feedback \
   --skill="react/performance" \
   --issue="Conflicts with react/security on local storage caching" \
   --context="User authentication data, React 18" \
@@ -194,7 +194,7 @@ npx agent-skills-standard feedback \
 
 ✅ **Trigger Activation**: Skill loads when context contains trigger keywords  
 ✅ **Detection**: AI recognizes one of the 4 detection conditions  
-✅ **Command Execution**: AI runs exact `npx agent-skills-standard feedback` command  
+✅ **Command Execution**: AI runs exact `npx swo-agent-toolkit feedback` command  
 ✅ **Payload**: All fields (skill, issue, context, model, suggestion) correctly populated  
 ✅ **Privacy**: No code snippets or project details included in submission
 
@@ -205,5 +205,5 @@ npx agent-skills-standard feedback \
 **Expected Behavior:**
 
 - AI should NOT auto-report
-- User must manually run `npx agent-skills-standard feedback`
+- User must manually run `npx swo-agent-toolkit feedback`
 - No automated detection or submission occurs

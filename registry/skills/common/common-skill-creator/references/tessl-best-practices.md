@@ -1,6 +1,6 @@
 # Tessl-Style Skill Best Practices
 
-This reference maps the [Tessl Evaluation Scale](https://docs.tessl.io/evaluate/evaluating-skills) to our internal `agent-skills-standard`.
+This reference maps the [Tessl Evaluation Scale](https://docs.tessl.io/evaluate/evaluating-skills) to our internal `swo-agent-toolkit`.
 
 ## 1. Activation Standards (The "Anchor")
 

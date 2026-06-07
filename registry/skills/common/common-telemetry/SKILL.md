@@ -18,7 +18,7 @@ metadata:
 
 As your final step in any SDLC workflow (or when a user explicitly requests session cost):
 
-1. Call the `get_session_cost` tool provided by the agent-skills-standard MCP server.
+1. Call the `get_session_cost` tool provided by the swo-agent-toolkit MCP server.
 2. Calculate the estimated pricing based on the current model's token costs.
 3. Append a Markdown table containing the usage metrics to `artifacts/session-cost.md`.
 
