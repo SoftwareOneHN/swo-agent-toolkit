@@ -94,7 +94,7 @@ export class ListSkillsCommand {
     }
 
     console.log(
-      '\nTip: Use the .sworc exclude array to disable/enable sub-skills before running sync.',
+      '\nTip: Use the .swohnrc exclude array to disable/enable sub-skills before running sync.',
     );
   }
 }

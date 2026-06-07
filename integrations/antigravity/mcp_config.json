@@ -1,10 +1,10 @@
 {
   "mcpServers": {
-    "swo-skills": {
+    "swohn-skills": {
       "command": "npx",
       "args": [
         "-y",
-        "@swo/mcp"
+        "@swohn/mcp"
       ]
     },
     "github": {

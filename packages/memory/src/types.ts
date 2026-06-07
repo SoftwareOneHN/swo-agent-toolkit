@@ -1,5 +1,5 @@
 /**
- * SWO Memory — Core Type Definitions
+ * SWOHN Memory — Core Type Definitions
  *
  * Defines the data structures underpinning the λ-Memory system:
  * entries, config, enums for fidelity tiers and memory types.

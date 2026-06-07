@@ -1,5 +1,5 @@
 /**
- * SWO Memory — Unit Tests for Decay Engine
+ * SWOHN Memory — Unit Tests for Decay Engine
  */
 
 import { describe, it } from 'node:test';

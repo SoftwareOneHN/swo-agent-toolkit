@@ -1,5 +1,5 @@
 /**
- * SWO Memory — Memory Clustering (Phase 7)
+ * SWOHN Memory — Memory Clustering (Phase 7)
  *
  * Groups memories into topic clusters using embedding similarity.
  * Uses simple k-means on local embeddings (128-dim vectors).

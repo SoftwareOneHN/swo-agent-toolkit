@@ -1,5 +1,5 @@
 /**
- * SWO Memory — Obsidian Vault Integration
+ * SWOHN Memory — Obsidian Vault Integration
  *
  * Each memory is exported as a `.md` file with YAML frontmatter.
  * The body contains the full text and context_log for human review.

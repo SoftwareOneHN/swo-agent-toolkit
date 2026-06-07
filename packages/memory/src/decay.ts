@@ -1,5 +1,5 @@
 /**
- * SWO Memory — λ-Decay Engine
+ * SWOHN Memory — λ-Decay Engine
  *
  * Core algorithm: score = importance × e^(−λ × hours_since_last_access)
  * Adapted from TEMM1E's Rust implementation into TypeScript.

@@ -8,7 +8,7 @@ import { RegistryService } from '../services/RegistryService';
 
 /**
  * Command for initializing the swo-agent-toolkit configuration in a project.
- * It guides the user through environment detection and creates the `.sworc` file.
+ * It guides the user through environment detection and creates the `.swohnrc` file.
  */
 export class InitCommand {
   private initService: InitService;
@@ -24,7 +24,7 @@ export class InitCommand {
    * Checks for existing config, discovers the environment, prompts the user, and saves the configuration.
    */
   async run() {
-    const configPath = path.join(process.cwd(), '.sworc');
+    const configPath = path.join(process.cwd(), '.swohnrc');
 
     // 1. Check for existing config
     if (await fs.pathExists(configPath)) {
@@ -32,7 +32,7 @@ export class InitCommand {
         {
           type: 'confirm',
           name: 'overwrite',
-          message: '.sworc already exists. Do you want to overwrite it?',
+          message: '.swohnrc already exists. Do you want to overwrite it?',
           default: false,
         },
       ]);
@@ -116,7 +116,7 @@ export class InitCommand {
     // 5. Build and Save
     await this.initService.buildAndSaveConfig(answers, metadata);
 
-    console.log(pc.green('\n✅ Initialized .sworc with your preferences!'));
+    console.log(pc.green('\n✅ Initialized .swohnrc with your preferences!'));
     console.log(pc.gray(`   Selected framework: ${answers.framework}`));
     if (answers.mcpEnabled) {
       console.log(

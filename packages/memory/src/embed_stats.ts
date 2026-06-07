@@ -1,5 +1,5 @@
 /**
- * SWO Memory — Gemini Embedding Usage Tracker
+ * SWOHN Memory — Gemini Embedding Usage Tracker
  *
  * Persists cumulative call stats to embed_stats.json so they survive server restarts.
  * Stats are updated atomically on every successful Gemini embedding call.

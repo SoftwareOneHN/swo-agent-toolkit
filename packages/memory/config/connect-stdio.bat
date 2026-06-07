@@ -1,8 +1,8 @@
 @echo off
 REM ============================================================
-REM SWO Memory — stdio Bridge (Windows)
+REM SWOHN Memory — stdio Bridge (Windows)
 REM
-REM Wraps the SWO Memory SSE server as a stdio MCP server
+REM Wraps the SWOHN Memory SSE server as a stdio MCP server
 REM using mcp-remote. This allows stdio-only clients
 REM (Codex CLI, Claude Code, Windsurf, etc.) to connect.
 REM
@@ -10,7 +10,7 @@ REM Prerequisites: Node.js 18+ installed
 REM Usage: Add this script as the MCP server command
 REM ============================================================
 
-set SWO_MEMORY_URL=http://localhost:3020/sse
+set SWOHN_MEMORY_URL=http://localhost:3020/sse
 
 REM Check if Node.js is available
 where node >nul 2>nul
@@ -21,4 +21,4 @@ if %ERRORLEVEL% neq 0 (
 )
 
 REM Launch mcp-remote bridge (stdin/stdout passthrough)
-npx -y mcp-remote "%SWO_MEMORY_URL%"
+npx -y mcp-remote "%SWOHN_MEMORY_URL%"

@@ -66,7 +66,7 @@ describe('McpCommand — actionStatus mismatch detection', () => {
     return logs.join('\n');
   }
 
-  it('warns when .sworc says enabled=false but a runtime config has the MCP', async () => {
+  it('warns when .swohnrc says enabled=false but a runtime config has the MCP', async () => {
     mockConfigService.loadConfig.mockResolvedValue(
       makeConfig({
         mcp: {
@@ -91,7 +91,7 @@ describe('McpCommand — actionStatus mismatch detection', () => {
     expect(output()).toContain('`ags mcp uninstall --from project`');
   });
 
-  it('warns when .sworc says enabled=true but no runtime config has the MCP', async () => {
+  it('warns when .swohnrc says enabled=true but no runtime config has the MCP', async () => {
     mockConfigService.loadConfig.mockResolvedValue(
       makeConfig({
         mcp: { enabled: true, scope: 'project' as McpScope, prompted: true },
@@ -182,12 +182,12 @@ describe('McpCommand — actionStatus mismatch detection', () => {
     expect(output()).not.toContain('Mismatch detected');
   });
 
-  it('aborts gracefully when .sworc is missing', async () => {
+  it('aborts gracefully when .swohnrc is missing', async () => {
     mockConfigService.loadConfig.mockResolvedValue(null);
 
     await command.run('status');
 
-    expect(output()).toContain('.sworc not found');
+    expect(output()).toContain('.swohnrc not found');
     expect(mockMcpService.status).not.toHaveBeenCalled();
   });
 

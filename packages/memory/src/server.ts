@@ -1,5 +1,5 @@
 /**
- * SWO Memory — MCP Server
+ * SWOHN Memory — MCP Server
  *
  * Exposes 10 tools via the Model Context Protocol:
  *   memory_store, memory_query, memory_recall, memory_context, memory_sync, memory_status,
@@ -45,14 +45,14 @@ export function createBrainServer(
   allowedProjects: string[] | null = null
 ): McpServer {
   const server = new McpServer({
-    name: 'swo-memory',
+    name: 'swohn-memory',
     version: '1.0.0',
   });
 
   // ─── Tool 1: memory_store ──────────────────────────────────
   server.tool(
     'memory_store',
-    'Store a new memory into the SWO Memory. Memories decay over time but can always be recalled.',
+    'Store a new memory into the SWOHN Memory. Memories decay over time but can always be recalled.',
     {
       content: z.string().describe('Full text of the memory'),
       summary: z.string().describe('Concise summary (1-2 sentences)'),
@@ -124,7 +124,7 @@ export function createBrainServer(
         const embedding = await getEmbedding(embedText, config.gemini_api_key);
         db.storeEmbedding(hash, embedToBuffer(embedding));
       } catch (embedErr) {
-        console.error('[swo-memory] Embedding failed in memory_store (memory saved without embedding):', (embedErr as Error).message);
+        console.error('[swohn-memory] Embedding failed in memory_store (memory saved without embedding):', (embedErr as Error).message);
       }
 
       let vaultPath: string | null = null;
@@ -155,7 +155,7 @@ export function createBrainServer(
   // ─── Tool 2: memory_query ──────────────────────────────────
   server.tool(
     'memory_query',
-    'Search the SWO Memory. Returns memories ranked by decay score (recent + important = higher). Uses FTS5 full-text search when a query is provided.',
+    'Search the SWOHN Memory. Returns memories ranked by decay score (recent + important = higher). Uses FTS5 full-text search when a query is provided.',
     {
       query: z
         .string()
@@ -190,7 +190,7 @@ export function createBrainServer(
         const [ftsResults, queryEmbed] = await Promise.all([
           Promise.resolve(db.ftsSearch(params.query, params.limit * 2)),
           getEmbedding(params.query, config.gemini_api_key).catch((err) => {
-            console.error('[swo-memory] Embedding failed in memory_query, using local fallback:', (err as Error).message);
+            console.error('[swohn-memory] Embedding failed in memory_query, using local fallback:', (err as Error).message);
             return localEmbed(params.query!);
           }),
         ]);
@@ -383,7 +383,7 @@ export function createBrainServer(
           content: [
             {
               type: 'text' as const,
-              text: 'Obsidian vault not configured. Set SWO_MEMORY_VAULT_PATH environment variable.',
+              text: 'Obsidian vault not configured. Set SWOHN_MEMORY_VAULT_PATH environment variable.',
             },
           ],
         };
@@ -440,7 +440,7 @@ export function createBrainServer(
   // ─── Tool 6: memory_status ─────────────────────────────────
   server.tool(
     'memory_status',
-    'Get statistics about the SWO Memory: total memories, breakdown by project and type, and GC info.',
+    'Get statistics about the SWOHN Memory: total memories, breakdown by project and type, and GC info.',
     {},
     async () => {
       const st = db.stats();

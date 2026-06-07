@@ -1,13 +1,13 @@
 # ============================================================
-# Codex CLI — SWO Memory MCP Configuration
+# Codex CLI — SWOHN Memory MCP Configuration
 # Place this file at: ~/.codex/config.toml
 #
 # Docs: https://github.com/openai/codex
 # ============================================================
 
-# SWO Memory memory server (SSE transport)
+# SWOHN Memory memory server (SSE transport)
 [[mcp_servers]]
-name = "swo-memory"
+name = "swohn-memory"
 type = "sse"
 url = "http://localhost:3020/sse"
 
@@ -19,6 +19,6 @@ x-api-key = "YOUR_API_KEY"
 # to use stdio transport (requires Node.js + npx):
 #
 # [[mcp_servers]]
-# name = "swo-memory"
+# name = "swohn-memory"
 # type = "stdio"
 # command = ["npx", "-y", "mcp-remote", "http://localhost:3020/sse"]

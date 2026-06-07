@@ -45,7 +45,7 @@ export class SyncCommand {
       // 1. Load Config
       const config = await this.configService.loadConfig();
       if (!config) {
-        console.log(pc.red('❌ Error: .sworc not found. Run `init` first.'));
+        console.log(pc.red('❌ Error: .swohnrc not found. Run `init` first.'));
         return;
       }
 
@@ -87,7 +87,7 @@ export class SyncCommand {
               {
                 type: 'confirm',
                 name: 'update',
-                message: 'Do you want to update .sworc with these versions?',
+                message: 'Do you want to update .swohnrc with these versions?',
                 default: true,
               },
             ]);
@@ -100,7 +100,7 @@ export class SyncCommand {
             config.skills[cat].ref = ref;
           }
           await this.configService.saveConfig(config);
-          console.log(pc.green('✅ .sworc updated.'));
+          console.log(pc.green('✅ .swohnrc updated.'));
         } else {
           console.log(
             pc.cyan('ℹ️  Skipping version updates, staying on pinned refs.'),

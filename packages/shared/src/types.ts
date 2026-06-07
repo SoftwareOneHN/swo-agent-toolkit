@@ -1,5 +1,5 @@
 /**
- * Common types shared across @swo/mcp and @swo/memory
+ * Common types shared across @swohn/mcp and @swohn/memory
  */
 
 export interface SessionEvent {

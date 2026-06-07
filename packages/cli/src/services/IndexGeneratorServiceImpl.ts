@@ -305,12 +305,12 @@ export class IndexGeneratorServiceImpl extends IndexGeneratorService {
       );
     }
 
-    // The MCP block is always present (not conditional on .sworc.mcp.enabled)
+    // The MCP block is always present (not conditional on .swohnrc.mcp.enabled)
     // because:
-    //   1. .sworc.mcp.enabled records CLI consent to manage configs — it's
+    //   1. .swohnrc.mcp.enabled records CLI consent to manage configs — it's
     //      orthogonal to whether the MCP is actually registered at runtime.
     //   2. A user can manually register the MCP in their runtime config without
-    //      ever touching .sworc; we don't want AGENTS.md to be silent about
+    //      ever touching .swohnrc; we don't want AGENTS.md to be silent about
     //      it in that case.
     //   3. The AI can self-check via its tool list before calling — the
     //      "If ... is registered" phrasing makes the instruction correct in
@@ -318,8 +318,8 @@ export class IndexGeneratorServiceImpl extends IndexGeneratorService {
     //   4. Tooltip-only — when `mcpEnabled` is true (CLI-managed), we
     //      add a confirmation note that this project ships with MCP support.
     const mcpStatusNote = mcpEnabled
-      ? '> [!TIP] **This project has the MCP server enabled in `.sworc`** — `sync` keeps your runtime configs in step. Run `ags mcp status` to verify per-agent installation.'
-      : '> [!NOTE] To enable MCP-managed installs in this project, run `ags mcp enable` (or edit `.sworc`). The MCP works fine if you registered it manually too.';
+      ? '> [!TIP] **This project has the MCP server enabled in `.swohnrc`** — `sync` keeps your runtime configs in step. Run `ags mcp status` to verify per-agent installation.'
+      : '> [!NOTE] To enable MCP-managed installs in this project, run `ags mcp enable` (or edit `.swohnrc`). The MCP works fine if you registered it manually too.';
 
     const mcpBlock = [
       '## 🔌 Runtime Enforcement via MCP',

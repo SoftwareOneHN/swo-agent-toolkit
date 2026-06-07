@@ -6,20 +6,20 @@
 
 | Package | Purpose | npm |
 |---|---|---|
-| `@swo/cli` | Sync coding skills to any AI agent | `swo-agent-toolkit` |
-| `@swo/mcp` | Runtime skill enforcement (MCP server) | `@swo/mcp` |
-| `@swo/memory` | Persistent λ-decay memory (MCP server) | `@swo/memory` |
-| `@swo/server` | REST API backend | Private |
+| `@swohn/cli` | Sync coding skills to any AI agent | `swo-agent-toolkit` |
+| `@swohn/mcp` | Runtime skill enforcement (MCP server) | `@swohn/mcp` |
+| `@swohn/memory` | Persistent λ-decay memory (MCP server) | `@swohn/memory` |
+| `@swohn/server` | REST API backend | Private |
 
 ## Quick Start
 
 ```bash
 # Install & sync coding skills
-npx @swo/cli@latest init
-npx @swo/cli@latest sync
+npx @swohn/cli@latest init
+npx @swohn/cli@latest sync
 
 # Start memory server (optional)
-npx @swo/memory
+npx @swohn/memory
 ```
 
 ## What's Inside
@@ -37,7 +37,7 @@ Local-first MCP server that gives your AI long-term memory across sessions. Stor
 
 ```
 swo-agent-toolkit/
-├── packages/          # Code packages (@swo/cli, @swo/mcp, @swo/memory, @swo/server, @swo/shared)
+├── packages/          # Code packages (@swohn/cli, @swohn/mcp, @swohn/memory, @swohn/server, @swohn/shared)
 ├── registry/          # Skill definitions, workflows, rules (content)
 ├── integrations/      # Agent-specific configs (Codex, Copilot, Kiro, etc.)
 ├── tools/             # Build scripts, benchmarks

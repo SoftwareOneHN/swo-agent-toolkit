@@ -18,7 +18,7 @@ const VALID_SCOPES: McpScope[] = [
 
 /**
  * `ags mcp <action>` — manage the optional MCP server integration without
- * editing `.sworc` by hand.
+ * editing `.swohnrc` by hand.
  *
  * Sub-actions:
  *   status                 Show current scope, enabled state, and which configs are wired
@@ -46,7 +46,7 @@ export class McpCommand {
     if (!config) {
       console.log(
         pc.red(
-          '❌ .sworc not found. Run `swo-agent-toolkit init` first.',
+          '❌ .swohnrc not found. Run `swo-agent-toolkit init` first.',
         ),
       );
       return;
@@ -119,7 +119,7 @@ export class McpCommand {
     if (!mcp.enabled && installedAnywhere) {
       console.log(
         pc.yellow(
-          '\n⚠️  Mismatch detected: .sworc says mcp.enabled=false, but the MCP entry IS present in at least one runtime config.',
+          '\n⚠️  Mismatch detected: .swohnrc says mcp.enabled=false, but the MCP entry IS present in at least one runtime config.',
         ),
       );
       console.log(
@@ -140,7 +140,7 @@ export class McpCommand {
     } else if (mcp.enabled && !installedAnywhere) {
       console.log(
         pc.yellow(
-          '\n⚠️  Mismatch detected: .sworc says mcp.enabled=true, but no runtime config has the MCP registered.',
+          '\n⚠️  Mismatch detected: .swohnrc says mcp.enabled=true, but no runtime config has the MCP registered.',
         ),
       );
       console.log(
@@ -286,7 +286,7 @@ export class McpCommand {
     });
     if (report.snippets.length === 0) {
       console.log(
-        pc.gray('No snippets generated (no supported agents in .sworc).'),
+        pc.gray('No snippets generated (no supported agents in .swohnrc).'),
       );
       return;
     }

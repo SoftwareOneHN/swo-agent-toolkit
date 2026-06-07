@@ -69,7 +69,7 @@ describe('InitCommand', () => {
     await command.run();
     expect(mockInitService.buildAndSaveConfig).toHaveBeenCalled();
     expect(console.log).toHaveBeenCalledWith(
-      expect.stringContaining('Initialized .sworc'),
+      expect.stringContaining('Initialized .swohnrc'),
     );
   });
 

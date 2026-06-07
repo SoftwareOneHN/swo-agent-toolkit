@@ -819,7 +819,7 @@ describe('IndexGeneratorService', () => {
         );
         expect(result).toContain('[!TIP]');
         expect(result).toContain(
-          'This project has the MCP server enabled in `.sworc`',
+          'This project has the MCP server enabled in `.swohnrc`',
         );
         expect(result).not.toContain(
           'To enable MCP-managed installs in this project, run `ags mcp enable`',
@@ -835,7 +835,7 @@ describe('IndexGeneratorService', () => {
         expect(result).toContain('[!NOTE]');
         expect(result).toContain('`ags mcp enable`');
         expect(result).not.toContain(
-          'This project has the MCP server enabled in `.sworc`',
+          'This project has the MCP server enabled in `.swohnrc`',
         );
       });
 

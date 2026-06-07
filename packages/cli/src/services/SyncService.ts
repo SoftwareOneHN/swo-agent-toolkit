@@ -204,7 +204,7 @@ export class SyncService {
       }
 
       // Generate router-style AGENTS.md (compact, scalable). When MCP is
-      // enabled in .sworc, the router gets a "Runtime Enforcement via MCP"
+      // enabled in .swohnrc, the router gets a "Runtime Enforcement via MCP"
       // section so AI agents (and sub-agents that read AGENTS.md) are told to
       // prefer the MCP tool calls.
       const mcpEnabled = config.mcp?.enabled === true;

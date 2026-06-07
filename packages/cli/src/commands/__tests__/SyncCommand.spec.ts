@@ -171,7 +171,7 @@ describe('SyncCommand', () => {
         }),
       );
       expect(console.log).toHaveBeenCalledWith(
-        expect.stringContaining('.sworc updated'),
+        expect.stringContaining('.swohnrc updated'),
       );
     });
 
@@ -220,7 +220,7 @@ describe('SyncCommand', () => {
         }),
       );
       expect(console.log).toHaveBeenCalledWith(
-        expect.stringContaining('.sworc updated'),
+        expect.stringContaining('.swohnrc updated'),
       );
     });
 

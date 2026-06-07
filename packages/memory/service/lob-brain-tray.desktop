@@ -1,10 +1,10 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=SWO Memory
+Name=SWOHN Memory
 Comment=Lambda Orchestrated Brain - AI Memory Server
-Exec=python3 /opt/swo-memory/service/tray-icon.pyw
-Icon=swo-memory
+Exec=python3 /opt/swohn-memory/service/tray-icon.pyw
+Icon=swohn-memory
 Terminal=false
 Categories=Development;Utility;
 StartupNotify=false

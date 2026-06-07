@@ -1,10 +1,10 @@
 {
-  "name": "@swo/mcp",
+  "name": "@swohn/mcp",
   "version": "0.4.1",
   "description": "MCP server that lets any AI agent (Claude, Cursor, Antigravity, Kiro, Continue, Gemini) load and audit skills from swo-agent-toolkit.",
   "main": "dist/index.js",
   "bin": {
-    "swo-mcp": "dist/index.js",
+    "swohn-mcp": "dist/index.js",
     "ags-mcp": "dist/index.js"
   },
   "files": [

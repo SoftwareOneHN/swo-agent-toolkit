@@ -27,7 +27,7 @@ export type CategoryConfig = SkillEntry;
 export type McpScope = 'project' | 'user' | 'snippets-only' | 'disabled';
 
 /**
- * Optional MCP integration block for `.sworc`. The CLI never edits runtime
+ * Optional MCP integration block for `.swohnrc`. The CLI never edits runtime
  * configs without explicit user consent recorded here.
  */
 export interface McpConfig {
@@ -44,7 +44,7 @@ export interface McpConfig {
 }
 
 /**
- * The main configuration structure for swo-agent-toolkit (usually .sworc).
+ * The main configuration structure for swo-agent-toolkit (usually .swohnrc).
  */
 export interface SkillConfig {
   /** Registry URL to sync from */

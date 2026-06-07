@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "swo-memory": {
+    "swohn-memory": {
       "url": "http://localhost:3020/sse",
       "headers": {
         "x-api-key": "YOUR_API_KEY"

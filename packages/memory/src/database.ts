@@ -1,5 +1,5 @@
 /**
- * SWO Memory — SQLite Storage Layer
+ * SWOHN Memory — SQLite Storage Layer
  *
  * Wraps better-sqlite3 to provide typed CRUD + FTS5 search for λ-memories.
  * Uses WAL mode for concurrent reads from multiple SSE clients.

@@ -138,7 +138,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **`@swo/mcp`**:
+- **`@swohn/mcp`**:
   - **Procedural Discovery Tools**: Added `list_workflows` to list all available standard operating procedures (e.g., `dev-fix`, `plan-feature`) in `.agents/workflows/`.
   - **Procedural Execution Tools**: Added `get_workflow` to retrieve exact step-by-step markdown instructions for any specific workflow.
   - **Authoritative Server Instructions**: Updated `SERVER_INSTRUCTIONS` with explicit guidance commanding agents to invoke `list_workflows()` at the start of any task or session.
@@ -213,7 +213,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **`@swo/mcp`**:
+- **`@swohn/mcp`**:
   - **Migrated to Streamable HTTP**: Replaced the deprecated `SSEServerTransport` with `StreamableHTTPServerTransport`. This aligns the server with the latest MCP specification for more robust and efficient session management.
   - **Enhanced Security**: Switched to `createMcpExpressApp` from the SDK, which provides built-in DNS rebinding protection and localhost security defaults.
   - **Unified Endpoints**: Introduced a standard `/mcp` endpoint while maintaining backward compatibility for legacy `/sse` and `/messages` routes.
@@ -264,7 +264,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- **`@swo/mcp`**:
+- **`@swohn/mcp`**:
   - Replaced `any` with `z.ZodObject<any>` in the `ToolDef` interface for better type safety in the MCP server registration.
   - Resolved TypeScript instantiation-depth limit (TS2589) by using a registration wrapper with loosened static types.
 - **CLI Configuration**:
@@ -278,7 +278,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **`@swo/mcp` package** (new): standalone MCP (Model Context Protocol) server that serves matched `SKILL.md` content to AI agents on demand. Works in any MCP-capable runtime (Claude Code, Cursor, Antigravity, Kiro, Continue, Gemini CLI). Closes the gap where sub-agents skip skill loading because they don't inherit `AGENTS.md`.
+- **`@swohn/mcp` package** (new): standalone MCP (Model Context Protocol) server that serves matched `SKILL.md` content to AI agents on demand. Works in any MCP-capable runtime (Claude Code, Cursor, Antigravity, Kiro, Continue, Gemini CLI). Closes the gap where sub-agents skip skill loading because they don't inherit `AGENTS.md`.
   - 5 tools: `load_skills_for_files`, `load_skills_for_keywords`, `get_skill`, `list_categories`, `audit_session_compliance`.
   - Server-level `instructions` field (1.9 KB workflow guide) per [awesome-mcp-best-practices §2.1](https://github.com/lirantal/awesome-mcp-best-practices).
   - Tier-aware matching honoring `metadata.broad_globs` + `base_language_skills` (same algorithm as `IndexGeneratorService`).

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SWO Memory — System Tray App v3 (Cross-Platform)
+SWOHN Memory — System Tray App v3 (Cross-Platform)
 
 This IS the application. Like Docker Desktop:
   - Launch tray → starts server as child process
@@ -38,11 +38,11 @@ PROJECT_DIR = SCRIPT_DIR.parent
 
 # Binary name per platform
 if IS_WINDOWS:
-    BINARY_NAME = "swo-memory.exe"
+    BINARY_NAME = "swohn-memory.exe"
 elif IS_MACOS:
-    BINARY_NAME = "swo-memory-macos"
+    BINARY_NAME = "swohn-memory-macos"
 else:
-    BINARY_NAME = "swo-memory-linux"
+    BINARY_NAME = "swohn-memory-linux"
 
 # Search for binary: dist/ first, then project root
 BINARY_PATH = PROJECT_DIR / "dist" / BINARY_NAME
@@ -50,7 +50,7 @@ if not BINARY_PATH.exists():
     BINARY_PATH = PROJECT_DIR / BINARY_NAME
 
 # Config file
-CONFIG_PATH = PROJECT_DIR / "swo-memory.toml"
+CONFIG_PATH = PROJECT_DIR / "swohn-memory.toml"
 
 # ─── Server Configuration ───────────────────────────────────
 PORT = "3020"
@@ -135,7 +135,7 @@ def notify(title: str, message: str):
 # ═════════════════════════════════════════════════════════════
 
 def start_server():
-    """Start the SWO Memory server as a child process."""
+    """Start the SWOHN Memory server as a child process."""
     global server_process, is_healthy
 
     if server_process and server_process.poll() is None:
@@ -143,7 +143,7 @@ def start_server():
         return True
 
     if not BINARY_PATH.exists():
-        notify("SWO Memory", f"Binary not found: {BINARY_PATH}")
+        notify("SWOHN Memory", f"Binary not found: {BINARY_PATH}")
         return False
 
     cmd = [str(BINARY_PATH)]
@@ -168,7 +168,7 @@ def start_server():
         server_process = subprocess.Popen(cmd, **kwargs)
         return True
     except Exception as e:
-        notify("SWO Memory", f"Failed to start: {e}")
+        notify("SWOHN Memory", f"Failed to start: {e}")
         return False
 
 
@@ -247,7 +247,7 @@ def health_monitor(icon: pystray.Icon):
         # Check if child process crashed unexpectedly
         if server_process and server_process.poll() is not None:
             # Process exited — try to restart once
-            notify("SWO Memory", "Server crashed. Restarting...")
+            notify("SWOHN Memory", "Server crashed. Restarting...")
             start_server()
             time.sleep(5)
 
@@ -259,19 +259,19 @@ def health_monitor(icon: pystray.Icon):
 
         if is_healthy:
             icon.title = (
-                f"SWO Memory \u2014 Running\n"
+                f"SWOHN Memory \u2014 Running\n"
                 f"Uptime: {uptime_str}\n"
                 f"Memories: {memory_count}"
             )
         else:
-            icon.title = "SWO Memory \u2014 OFFLINE"
+            icon.title = "SWOHN Memory \u2014 OFFLINE"
 
         # Notify on status transitions (skip first check)
         if prev_healthy is not None and prev_healthy != is_healthy:
             if is_healthy:
-                notify("SWO Memory", f"Server online! ({memory_count} memories)")
+                notify("SWOHN Memory", f"Server online! ({memory_count} memories)")
             else:
-                notify("SWO Memory", "Server went offline")
+                notify("SWOHN Memory", "Server went offline")
         prev_healthy = is_healthy
 
         time.sleep(POLL_INTERVAL)
@@ -288,16 +288,16 @@ def on_open_dashboard(_icon=None, _item=None):
 
 def on_restart(_icon=None, _item=None):
     """Restart the server."""
-    notify("SWO Memory", "Restarting server...")
+    notify("SWOHN Memory", "Restarting server...")
 
     def do_restart():
         restart_server()
         time.sleep(5)
         check_health()
         if is_healthy:
-            notify("SWO Memory", f"Server restarted! ({memory_count} memories)")
+            notify("SWOHN Memory", f"Server restarted! ({memory_count} memories)")
         else:
-            notify("SWO Memory", "Restart failed. Check binary path.")
+            notify("SWOHN Memory", "Restart failed. Check binary path.")
 
     threading.Thread(target=do_restart, daemon=True).start()
 
@@ -307,7 +307,7 @@ def on_quit(icon: pystray.Icon, _item=None):
     global shutting_down
     shutting_down = True
 
-    notify("SWO Memory", "Shutting down...")
+    notify("SWOHN Memory", "Shutting down...")
     time.sleep(0.5)
 
     # Stop server
@@ -358,12 +358,12 @@ def main():
     # --- Singleton ---
     if not acquire_singleton():
         # Another instance is already running
-        print("SWO Memory tray is already running.")
+        print("SWOHN Memory tray is already running.")
         return
 
     # --- Start server ---
     if start_server():
-        print(f"SWO Memory server starting on port {PORT}...")
+        print(f"SWOHN Memory server starting on port {PORT}...")
     else:
         print("WARNING: Could not start server. Tray will show offline.")
 
@@ -376,9 +376,9 @@ def main():
 
     # --- Create tray icon ---
     tray_icon = pystray.Icon(
-        name="swo-memory",
+        name="swohn-memory",
         icon=create_icon(is_healthy),
-        title="SWO Memory \u2014 Starting...",
+        title="SWOHN Memory \u2014 Starting...",
         menu=pystray.Menu(
             pystray.MenuItem(get_status_text, None, enabled=False),
             pystray.Menu.SEPARATOR,
@@ -394,7 +394,7 @@ def main():
     monitor.start()
 
     if is_healthy:
-        notify("SWO Memory", f"Server ready! ({memory_count} memories)")
+        notify("SWOHN Memory", f"Server ready! ({memory_count} memories)")
 
     # --- Run (blocks until quit) ---
     tray_icon.run()

@@ -8,8 +8,8 @@
 **Current release:** `v2.4.5` — packaged `ags -V` now detects stale pnpm shims and guides repair.
 
 ```bash
-npx @swo/cli@latest init   # detect your stack
-npx @swo/cli@latest sync   # install skills
+npx @swohn/cli@latest init   # detect your stack
+npx @swohn/cli@latest sync   # install skills
 ```
 
 If `ags -V` still shows an old version after reinstalling, check your PATH order. `~/Library/pnpm` must come before `~/Library/pnpm/bin`, then run `hash -r` and verify with `ags -V` again.
@@ -21,7 +21,7 @@ If `ags -V` still shows an old version after reinstalling, check your PATH order
 The CLI takes engineering standards from the [Agent Skills Standard registry](https://github.com/SoftwareOneHN/swo-agent-toolkit) and installs them into your AI agent's native format:
 
 ```bash
-npx @swo/cli sync
+npx @swohn/cli sync
 
   - Updated .cursor/skills/    (Cursor)
   - Updated .claude/skills/    (Claude Code)
@@ -91,7 +91,7 @@ project/
 
 ## Optional: MCP Runtime Enforcement
 
-The CLI **distributes** skills as static files. The companion [`@swo/mcp`](https://www.npmjs.com/package/@swo/mcp) server **serves** them at runtime as MCP tool calls — closing the gap where sub-agents skip skill loading because they don't inherit `AGENTS.md`.
+The CLI **distributes** skills as static files. The companion [`@swohn/mcp`](https://www.npmjs.com/package/@swohn/mcp) server **serves** them at runtime as MCP tool calls — closing the gap where sub-agents skip skill loading because they don't inherit `AGENTS.md`.
 
 `init` asks once whether to enable it and at what scope. Default is `project` (recommended). Change later with:
 

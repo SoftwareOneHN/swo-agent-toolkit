@@ -56,7 +56,7 @@ const SkillConfigSchema = z.object({
 const DEFAULT_SDLC_SUPPORT_CATEGORIES = ['quality-engineering'] as const;
 
 /**
- * Service for managing the `.sworc` configuration file.
+ * Service for managing the `.swohnrc` configuration file.
  * Handles loading, saving, and initial construction of the configuration based on project metadata.
  */
 export class ConfigService {
@@ -76,7 +76,7 @@ export class ConfigService {
    * @throws Error if the configuration format is invalid
    */
   async loadConfig(cwd: string = process.cwd()): Promise<SkillConfig | null> {
-    const configPath = path.join(cwd, '.sworc');
+    const configPath = path.join(cwd, '.swohnrc');
 
     if (!(await fs.pathExists(configPath))) {
       return null;
@@ -107,7 +107,7 @@ export class ConfigService {
       const parsed = SkillConfigSchema.safeParse(rawConfig);
 
       if (!parsed.success) {
-        throw new Error(`Invalid .sworc format: ${parsed.error.message}`);
+        throw new Error(`Invalid .swohnrc format: ${parsed.error.message}`);
       }
 
       return parsed.data as SkillConfig;
@@ -117,7 +117,7 @@ export class ConfigService {
   }
 
   /**
-   * Saves the provided configuration to the `.sworc` file.
+   * Saves the provided configuration to the `.swohnrc` file.
    * @param config The configuration to save
    * @param cwd Current working directory
    */
@@ -125,7 +125,7 @@ export class ConfigService {
     config: SkillConfig,
     cwd: string = process.cwd(),
   ): Promise<void> {
-    const configPath = path.join(cwd, '.sworc');
+    const configPath = path.join(cwd, '.swohnrc');
     await fs.outputFile(configPath, yaml.dump(config));
   }
 

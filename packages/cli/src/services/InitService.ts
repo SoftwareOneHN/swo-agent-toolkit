@@ -89,7 +89,7 @@ export class InitService {
   }
 
   /**
-   * Orchestrates the construction, validation, and saving of the initial `.sworc` configuration.
+   * Orchestrates the construction, validation, and saving of the initial `.swohnrc` configuration.
    * @param answers The user's prompt responses
    * @param metadata Registry metadata for versioning
    * @param cwd Current working directory
@@ -143,7 +143,7 @@ export class InitService {
 # Specialist definitions are synced separately as native sub-agents, not skills.
 #
 `;
-    const configPath = path.join(cwd, '.sworc');
+    const configPath = path.join(cwd, '.swohnrc');
     await fs.outputFile(configPath, commentHeader + yaml.dump(config));
   }
 }

@@ -1,5 +1,5 @@
 /**
- * SWO Memory — Document Ingestion Pipeline (Phase 10)
+ * SWOHN Memory — Document Ingestion Pipeline (Phase 10)
  *
  * Chunks text documents (MD, TXT) into smaller pieces,
  * embeds each chunk, and stores as memories for RAG retrieval.
@@ -109,7 +109,7 @@ export async function ingestFile(
       const embedding = await getEmbedding(chunk, geminiApiKey ?? null);
       db.storeEmbedding(hash, embedToBuffer(embedding));
     } catch (embedErr) {
-      console.error('[swo-memory] Embedding failed in ingest (chunk saved without embedding):', (embedErr as Error).message);
+      console.error('[swohn-memory] Embedding failed in ingest (chunk saved without embedding):', (embedErr as Error).message);
     }
 
     hashes.push(hash);

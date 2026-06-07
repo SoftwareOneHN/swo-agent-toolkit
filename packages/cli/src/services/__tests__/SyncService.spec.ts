@@ -327,7 +327,7 @@ describe('SyncService', () => {
       expect(captured.mcpFlag).toBe(false);
     });
 
-    it('defaults mcp flag to false when .sworc has no mcp block', async () => {
+    it('defaults mcp flag to false when .swohnrc has no mcp block', async () => {
       const { captured } = fakeGeneratorCapturingMcp();
 
       const config: SkillConfig = {

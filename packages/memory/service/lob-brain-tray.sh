@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# SWO Memory — Linux/macOS Launcher
+# SWOHN Memory — Linux/macOS Launcher
 # Starts the tray app (which manages the server automatically)
 # ============================================================
 
@@ -18,4 +18,4 @@ fi
 
 # Launch tray app in background
 nohup python3 "$SCRIPT_DIR/tray-icon.pyw" > /dev/null 2>&1 &
-echo "SWO Memory tray started (PID: $!)"
+echo "SWOHN Memory tray started (PID: $!)"

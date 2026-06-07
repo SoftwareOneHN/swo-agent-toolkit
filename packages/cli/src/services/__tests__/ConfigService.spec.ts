@@ -25,16 +25,16 @@ describe('ConfigService', () => {
   });
 
   describe('loadConfig', () => {
-    it('should return null if .sworc does not exist', async () => {
+    it('should return null if .swohnrc does not exist', async () => {
       vi.mocked(fs.pathExists).mockImplementation(() => Promise.resolve(false));
       const config = await configService.loadConfig(mockCwd);
       expect(config).toBeNull();
       expect(fs.pathExists).toHaveBeenCalledWith(
-        path.join(mockCwd, '.sworc'),
+        path.join(mockCwd, '.swohnrc'),
       );
     });
 
-    it('should return parsed config if .sworc exists and is valid', async () => {
+    it('should return parsed config if .swohnrc exists and is valid', async () => {
       const mockYamlText = 'registry: https://example.com\nskills: {}';
       const mockConfig: SkillConfig = {
         registry: 'https://example.com',
@@ -106,12 +106,12 @@ describe('ConfigService', () => {
 
       expect(config?.agents).toEqual([Agent.Codex, Agent.Cursor]);
       expect(fs.outputFile).toHaveBeenCalledWith(
-        path.join(mockCwd, '.sworc'),
+        path.join(mockCwd, '.swohnrc'),
         'dumped yaml',
       );
     });
 
-    it('should throw error if .sworc format is invalid', async () => {
+    it('should throw error if .swohnrc format is invalid', async () => {
       vi.mocked(fs.pathExists).mockImplementation(() => Promise.resolve(true));
       vi.mocked(fs.readFile).mockImplementation(() =>
         Promise.resolve('invalid yaml' as unknown as Buffer),
@@ -119,7 +119,7 @@ describe('ConfigService', () => {
       vi.mocked(yaml.load).mockReturnValue({ some: 'garbage' });
 
       await expect(configService.loadConfig(mockCwd)).rejects.toThrow(
-        'Invalid .sworc format',
+        'Invalid .swohnrc format',
       );
     });
 
@@ -147,7 +147,7 @@ describe('ConfigService', () => {
 
       expect(yaml.dump).toHaveBeenCalledWith(mockConfig);
       expect(fs.outputFile).toHaveBeenCalledWith(
-        path.join(mockCwd, '.sworc'),
+        path.join(mockCwd, '.swohnrc'),
         'mock yaml',
       );
     });
@@ -1086,7 +1086,7 @@ describe('ConfigService', () => {
   });
 
   describe('getRegistryUrl', () => {
-    it('should return default registry if .sworc missing', async () => {
+    it('should return default registry if .swohnrc missing', async () => {
       vi.mocked(fs.pathExists).mockImplementation(() => Promise.resolve(false));
       const url = await configService.getRegistryUrl('/tmp');
       expect(url).toContain('github.com');

@@ -28,7 +28,7 @@ if (
 ) {
   process.stderr.write(
     `\n${pc.yellow('⚠️  ags is running from a stale global shim — reported version will be wrong.')}\n` +
-      `   ${pc.cyan('Quickfix:')} ${pc.bold('npx @swo/cli@latest upgrade')} ` +
+      `   ${pc.cyan('Quickfix:')} ${pc.bold('npx @swohn/cli@latest upgrade')} ` +
       pc.gray('(auto-detects & removes the stale shim)') +
       '\n\n',
   );
@@ -45,7 +45,7 @@ program
 
 program
   .command('init')
-  .description('Initialize a .sworc configuration file interactively')
+  .description('Initialize a .swohnrc configuration file interactively')
   .action(async () => {
     const init = new InitCommand();
     await init.run();

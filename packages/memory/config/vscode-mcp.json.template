@@ -1,11 +1,11 @@
 {
-  // VS Code MCP Configuration for SWO Memory
+  // VS Code MCP Configuration for SWOHN Memory
   // Place this file at: .vscode/mcp.json (project-level)
   // Or add to User Settings > Extensions > MCP (global)
   //
   // Docs: https://code.visualstudio.com/docs/copilot/chat/mcp-servers
   "servers": {
-    "swo-memory": {
+    "swohn-memory": {
       "type": "sse",
       "url": "http://localhost:3020/sse",
       "headers": {

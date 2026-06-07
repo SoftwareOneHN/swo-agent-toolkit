@@ -1,5 +1,5 @@
 /**
- * Release script for @swo/memory (@swo/memory)
+ * Release script for @swohn/memory (@swohn/memory)
  *
  * Usage: tsx tools/scripts/release-memory.ts [patch|minor|major]
  */
@@ -19,7 +19,7 @@ async function main() {
   const oldVersion = pkg.version;
   const newVersion = bumpVersion(oldVersion, bump);
 
-  console.log(`\n📦 @swo/memory: ${oldVersion} → ${newVersion} (${bump})\n`);
+  console.log(`\n📦 @swohn/memory: ${oldVersion} → ${newVersion} (${bump})\n`);
 
   if (!(await confirmRelease(newVersion))) {
     console.log('Cancelled.');
@@ -32,13 +32,13 @@ async function main() {
 
   // Build
   console.log('🔨 Building...');
-  execSync('pnpm --filter @swo/memory build', { cwd: ROOT_DIR, stdio: 'inherit' });
+  execSync('pnpm --filter @swohn/memory build', { cwd: ROOT_DIR, stdio: 'inherit' });
 
   // Publish
   console.log('🚀 Publishing...');
   execSync('npm publish --access public', { cwd: MEMORY_DIR, stdio: 'inherit' });
 
-  console.log(`\n✅ @swo/memory@${newVersion} published successfully!`);
+  console.log(`\n✅ @swohn/memory@${newVersion} published successfully!`);
 }
 
 main().catch((err) => {

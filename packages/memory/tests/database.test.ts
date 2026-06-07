@@ -1,5 +1,5 @@
 /**
- * SWO Memory — Unit Tests for SQLite Database Layer
+ * SWOHN Memory — Unit Tests for SQLite Database Layer
  */
 
 import { describe, it, beforeEach, afterEach } from 'node:test';

@@ -1,5 +1,5 @@
 /**
- * SWO Memory — Embedding Engine (Phase 6)
+ * SWOHN Memory — Embedding Engine (Phase 6)
  *
  * Provides semantic search via vector embeddings.
  * Supports two modes:
@@ -53,7 +53,7 @@ export async function getEmbedding(text: string, apiKey: string | null): Promise
     try {
       return await geminiEmbed(text, apiKey);
     } catch (err) {
-      console.error('[swo-memory] Gemini embedding failed, falling back to local TF-IDF:', (err as Error).message);
+      console.error('[swohn-memory] Gemini embedding failed, falling back to local TF-IDF:', (err as Error).message);
       recordFallback();
     }
   }

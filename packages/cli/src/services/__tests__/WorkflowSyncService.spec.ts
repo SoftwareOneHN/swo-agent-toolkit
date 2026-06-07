@@ -134,7 +134,7 @@ describe('WorkflowSyncService', () => {
 
       const result = await workflowSyncService.reconcileWorkflows(config);
 
-      expect(result).toBe(false); // No change to .sworc
+      expect(result).toBe(false); // No change to .swohnrc
       expect(config.workflows).toBe(true);
     });
   });

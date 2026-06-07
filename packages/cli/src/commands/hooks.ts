@@ -26,7 +26,7 @@ export class HooksCommand {
     if (!config) {
       console.log(
         pc.red(
-          '❌ .sworc not found. Run `swo-agent-toolkit init` first.',
+          '❌ .swohnrc not found. Run `swo-agent-toolkit init` first.',
         ),
       );
       return;

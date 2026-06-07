@@ -1,11 +1,11 @@
 {
-  "name": "@swo/memory",
+  "name": "@swohn/memory",
   "version": "1.0.0",
   "description": "SWO Agent Memory — MCP Server with λ-decay persistent memory",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "swo-memory": "dist/index.js"
+    "swohn-memory": "dist/index.js"
   },
   "files": [
     "dist",

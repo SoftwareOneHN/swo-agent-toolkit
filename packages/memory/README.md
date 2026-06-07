@@ -1,8 +1,8 @@
-# 🧠 SWO Memory Pro Kit
+# 🧠 SWOHN Memory Pro Kit
 
 > **Persistent AI Memory + Professional Agent System for Gemini / Antigravity / Any MCP-compatible AI**
 
-SWO Memory gives your AI agent **long-term memory** that persists across sessions, conversations, and even machines. Combined with 27 battle-tested operational rules, 17 automated workflows, and 37 specialized skills — this is your AI development team in a box.
+SWOHN Memory gives your AI agent **long-term memory** that persists across sessions, conversations, and even machines. Combined with 27 battle-tested operational rules, 17 automated workflows, and 37 specialized skills — this is your AI development team in a box.
 
 ---
 
@@ -10,7 +10,7 @@ SWO Memory gives your AI agent **long-term memory** that persists across session
 
 | Directory | Contents | Count |
 |-----------|----------|-------|
-| `binary/` | SWO Memory server binaries (Windows, Linux, macOS) | 4 targets |
+| `binary/` | SWOHN Memory server binaries (Windows, Linux, macOS) | 4 targets |
 | `service/` | **System Tray App** (cross-platform server manager) | 5 files |
 | `config/` | MCP config templates (7 clients + 2 bridge scripts) | 9 |
 | `rules/` | Operational rules for AI agents | 27 |
@@ -21,10 +21,10 @@ SWO Memory gives your AI agent **long-term memory** that persists across session
 
 | Platform | Binary Path |
 |----------|-------------|
-| 🪟 Windows x64 | `binary/windows-x64/swo-memory.exe` |
-| 🐧 Linux x64 (Ubuntu/Debian) | `binary/linux-x64/swo-memory` |
-| 🍎 macOS Intel (x64) | `binary/macos-x64/swo-memory` |
-| 🍎 macOS Apple Silicon (M1/M2/M3) | `binary/macos-arm64/swo-memory` |
+| 🪟 Windows x64 | `binary/windows-x64/swohn-memory.exe` |
+| 🐧 Linux x64 (Ubuntu/Debian) | `binary/linux-x64/swohn-memory` |
+| 🍎 macOS Intel (x64) | `binary/macos-x64/swohn-memory` |
+| 🍎 macOS Apple Silicon (M1/M2/M3) | `binary/macos-arm64/swohn-memory` |
 
 ---
 
@@ -42,25 +42,25 @@ Copy the binary for your platform into the `dist/` folder (or project root):
 
 | Platform | Binary |
 |----------|--------|
-| Windows x64 | `binary/windows-x64/swo-memory.exe` |
-| Linux x64 | `binary/linux-x64/swo-memory-linux` |
-| macOS Intel | `binary/macos-x64/swo-memory-macos` |
-| macOS ARM | `binary/macos-arm64/swo-memory-macos` |
+| Windows x64 | `binary/windows-x64/swohn-memory.exe` |
+| Linux x64 | `binary/linux-x64/swohn-memory-linux` |
+| macOS Intel | `binary/macos-x64/swohn-memory-macos` |
+| macOS ARM | `binary/macos-arm64/swohn-memory-macos` |
 
 ### 3. Launch via Tray App (Recommended)
 
-The **Tray App** is the easiest way to run SWO Memory. It manages the server automatically:
+The **Tray App** is the easiest way to run SWOHN Memory. It manages the server automatically:
 
 **Windows:**
 ```powershell
 pythonw service\tray-icon.pyw
-# Or double-click service\swo-memory-startup.bat
+# Or double-click service\swohn-memory-startup.bat
 ```
 
 **Linux / macOS:**
 ```bash
-chmod +x service/swo-memory-tray.sh
-./service/swo-memory-tray.sh
+chmod +x service/swohn-memory-tray.sh
+./service/swohn-memory-tray.sh
 ```
 
 A **green λ icon** appears in your system tray. Right-click for options:
@@ -68,15 +68,15 @@ A **green λ icon** appears in your system tray. Right-click for options:
 - **Restart Server** — restart without closing the app
 - **Quit** — stops the server and exits
 
-> 📝 The server starts on port **3020** by default. Edit `swo-memory.toml` to change.
+> 📝 The server starts on port **3020** by default. Edit `swohn-memory.toml` to change.
 
 ### Auto-Start on Boot
 
-**Windows:** Place a shortcut to `service\swo-memory-startup.bat` in `shell:startup`
+**Windows:** Place a shortcut to `service\swohn-memory-startup.bat` in `shell:startup`
 
-**Linux:** Copy `service/swo-memory-tray.desktop` to `~/.config/autostart/`
+**Linux:** Copy `service/swohn-memory-tray.desktop` to `~/.config/autostart/`
 
-**macOS:** Add `service/swo-memory-tray.sh` to Login Items (System Settings > General > Login Items)
+**macOS:** Add `service/swohn-memory-tray.sh` to Login Items (System Settings > General > Login Items)
 
 ### 4. Configure MCP Connection
 
@@ -90,8 +90,8 @@ Copy `config/mcp-config.json.template` to your MCP settings:
 ```json
 {
   "mcpServers": {
-    "swo-memory": {
-      "command": "C:/path/to/swo-memory.exe",
+    "swohn-memory": {
+      "command": "C:/path/to/swohn-memory.exe",
       "args": [],
       "env": {
         "LOB_BRAIN_PORT": "3020",
@@ -112,7 +112,7 @@ Copy `config/vscode-mcp.json.template` to `.vscode/mcp.json` in your project:
 ```json
 {
   "servers": {
-    "swo-memory": {
+    "swohn-memory": {
       "type": "sse",
       "url": "http://localhost:3020/sse",
       "headers": {
@@ -132,7 +132,7 @@ Add to your Claude Desktop config (`claude_desktop_config.json`):
 ```json
 {
   "mcpServers": {
-    "swo-memory": {
+    "swohn-memory": {
       "url": "http://localhost:3020/sse",
       "headers": {
         "x-api-key": "YOUR_API_KEY"
@@ -150,7 +150,7 @@ Copy `config/codex-config.toml.template` to `~/.codex/config.toml`:
 
 ```toml
 [[mcp_servers]]
-name = "swo-memory"
+name = "swohn-memory"
 type = "sse"
 url = "http://localhost:3020/sse"
 
@@ -162,7 +162,7 @@ If SSE doesn't work, use the **stdio bridge** (requires Node.js):
 
 ```toml
 [[mcp_servers]]
-name = "swo-memory"
+name = "swohn-memory"
 type = "stdio"
 command = ["npx", "-y", "mcp-remote", "http://localhost:3020/sse"]
 ```
@@ -184,9 +184,9 @@ config\setup-claude-code.bat
 
 Or manually:
 ```bash
-claude mcp add swo-memory --transport sse http://localhost:3020/sse
+claude mcp add swohn-memory --transport sse http://localhost:3020/sse
 # Or with stdio bridge:
-claude mcp add swo-memory --type stdio -- npx -y mcp-remote http://localhost:3020/sse
+claude mcp add swohn-memory --type stdio -- npx -y mcp-remote http://localhost:3020/sse
 ```
 </details>
 
@@ -198,7 +198,7 @@ Copy `config/openclaw-mcp.json.template` to `~/.openclaw/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "swo-memory": {
+    "swohn-memory": {
       "url": "http://localhost:3020/sse",
       "headers": {
         "x-api-key": "YOUR_API_KEY"
@@ -243,9 +243,9 @@ your-project/
 
 ---
 
-## 🧠 SWO Memory — How It Works
+## 🧠 SWOHN Memory — How It Works
 
-SWO Memory is a **local-first** persistent memory server that:
+SWOHN Memory is a **local-first** persistent memory server that:
 
 - **Stores** memories with importance scoring (1-5)
 - **Decays** old memories naturally (recent + important = higher priority)

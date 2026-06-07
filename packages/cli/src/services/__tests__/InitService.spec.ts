@@ -110,7 +110,7 @@ describe('InitService', () => {
       expect(mockConfigService.buildInitialConfig).toHaveBeenCalled();
       expect(mockConfigService.applyDependencyExclusions).toHaveBeenCalled();
       expect(fs.outputFile).toHaveBeenCalledWith(
-        expect.stringContaining('.sworc'),
+        expect.stringContaining('.swohnrc'),
         expect.stringContaining('Auto-detected configuration'),
       );
     });
@@ -168,7 +168,7 @@ describe('InitService', () => {
         expect.any(Array),
       );
       expect(fs.outputFile).toHaveBeenCalledWith(
-        expect.stringContaining('.sworc'),
+        expect.stringContaining('.swohnrc'),
         expect.stringContaining('scope: project'),
       );
     });
@@ -183,7 +183,7 @@ describe('InitService', () => {
       };
       await initService.buildAndSaveConfig(answers, {}, '/tmp');
       expect(fs.outputFile).toHaveBeenCalledWith(
-        expect.stringContaining('.sworc'),
+        expect.stringContaining('.swohnrc'),
         expect.stringContaining('scope: disabled'),
       );
     });

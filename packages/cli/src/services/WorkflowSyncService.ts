@@ -52,7 +52,7 @@ export class WorkflowSyncService {
         config.workflows = [...currentWorkflows, ...newWorkflows];
         console.log(
           pc.yellow(
-            `✨ Workflows Discovered: Adding [${newWorkflows.join(', ')}] to .sworc.`,
+            `✨ Workflows Discovered: Adding [${newWorkflows.join(', ')}] to .swohnrc.`,
           ),
         );
         changed = true;
@@ -64,7 +64,7 @@ export class WorkflowSyncService {
       config.workflows = defaultWorkflows;
       console.log(
         pc.yellow(
-          `✨ Workflows Initialized: Adding [${defaultWorkflows.join(', ')}] to .sworc.`,
+          `✨ Workflows Initialized: Adding [${defaultWorkflows.join(', ')}] to .swohnrc.`,
         ),
       );
       changed = true;

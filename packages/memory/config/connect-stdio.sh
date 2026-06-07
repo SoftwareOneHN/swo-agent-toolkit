@@ -1,8 +1,8 @@
 #!/bin/bash
 # ============================================================
-# SWO Memory — stdio Bridge (Linux/macOS)
+# SWOHN Memory — stdio Bridge (Linux/macOS)
 #
-# Wraps the SWO Memory SSE server as a stdio MCP server
+# Wraps the SWOHN Memory SSE server as a stdio MCP server
 # using mcp-remote. This allows stdio-only clients
 # (Codex CLI, Claude Code, Windsurf, etc.) to connect.
 #
@@ -10,7 +10,7 @@
 # Usage: Add this script as the MCP server command
 # ============================================================
 
-SWO_MEMORY_URL="http://localhost:3020/sse"
+SWOHN_MEMORY_URL="http://localhost:3020/sse"
 
 # Check if Node.js is available
 if ! command -v node &> /dev/null; then
@@ -20,4 +20,4 @@ if ! command -v node &> /dev/null; then
 fi
 
 # Launch mcp-remote bridge (stdin/stdout passthrough)
-exec npx -y mcp-remote "$SWO_MEMORY_URL"
+exec npx -y mcp-remote "$SWOHN_MEMORY_URL"

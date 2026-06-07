@@ -28,8 +28,8 @@ export interface McpTarget {
   shape: 'map' | 'list';
 }
 
-export const SERVER_NAME = 'swo-skills';
-export const PACKAGE = '@swo/mcp';
+export const SERVER_NAME = 'swohn-skills';
+export const PACKAGE = '@swohn/mcp';
 
 const getTargets = (home = os.homedir()): Record<string, McpTarget> => {
   const HOME = home;
@@ -630,7 +630,7 @@ export class McpConfigService {
   }
 }
 
-/** Default mcp config block used when none is present in `.sworc`. */
+/** Default mcp config block used when none is present in `.swohnrc`. */
 export function defaultMcpConfig(): McpConfig {
   return { enabled: false, scope: 'snippets-only', prompted: false };
 }
