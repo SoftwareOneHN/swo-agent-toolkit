@@ -1,6 +1,6 @@
 # MCP Server Architecture
 
-This document explains how `swo-agent-mcp` works internally — for contributors, security reviewers, and integrators evaluating whether to ship it inside their stack.
+This document explains how `@swo/mcp` works internally — for contributors, security reviewers, and integrators evaluating whether to ship it inside their stack.
 
 For install + usage, see [`mcp/README.md`](./README.md). For the project-wide design context, see [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 

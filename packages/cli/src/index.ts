@@ -28,7 +28,7 @@ if (
 ) {
   process.stderr.write(
     `\n${pc.yellow('⚠️  ags is running from a stale global shim — reported version will be wrong.')}\n` +
-      `   ${pc.cyan('Quickfix:')} ${pc.bold('npx swo-agent-toolkit@latest upgrade')} ` +
+      `   ${pc.cyan('Quickfix:')} ${pc.bold('npx @swo/cli@latest upgrade')} ` +
       pc.gray('(auto-detects & removes the stale shim)') +
       '\n\n',
   );

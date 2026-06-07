@@ -27,8 +27,8 @@ function setupGuidance(setup: SetupHint): string {
         "",
         "To set up:",
         "  1. cd into your project root",
-        "  2. Run `npx swo-agent-toolkit@latest init`  (creates .skillsrc)",
-        "  3. Run `npx swo-agent-toolkit@latest sync`  (installs skills)",
+        "  2. Run `npx @swo/cli@latest init`  (creates .skillsrc)",
+        "  3. Run `npx @swo/cli@latest sync`  (installs skills)",
         "  4. Restart this MCP server",
       ].join("\n");
     case "no-skills-dir":
@@ -36,7 +36,7 @@ function setupGuidance(setup: SetupHint): string {
         "No skills are installed in this project yet.",
         "",
         "To install skills:",
-        "  Run `npx swo-agent-toolkit@latest sync` from the project root.",
+        "  Run `npx @swo/cli@latest sync` from the project root.",
         "",
         "After running `sync`, restart this MCP server (or reload your AI tool) so it can pick up the new skills.",
       ].join("\n");
@@ -56,7 +56,7 @@ function maybeEmptyState(ctx: ToolContext): ToolResult | null {
       content: [
         {
           type: "text",
-          text: "No skills are loaded in this project. Run `npx swo-agent-toolkit@latest sync` to install standard skills, then restart the MCP server.",
+          text: "No skills are loaded in this project. Run `npx @swo/cli@latest sync` to install standard skills, then restart the MCP server.",
         },
       ],
     };
@@ -147,7 +147,7 @@ export async function getSkill(
           text: [
             `The skill index references "${args.category}/${args.name}" but its SKILL.md is missing.`,
             "This usually means the skill was deleted or moved after the server started.",
-            "Restart the MCP server, or run `npx swo-agent-toolkit@latest sync` to reinstall skills.",
+            "Restart the MCP server, or run `npx @swo/cli@latest sync` to reinstall skills.",
           ].join("\n"),
         },
       ],

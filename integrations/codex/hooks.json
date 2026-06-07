@@ -1,10 +1,10 @@
 {
   "mcpServers": {
-    "swo-agent-toolkit": {
+    "swo-skills": {
       "command": "npx",
       "args": [
         "-y",
-        "swo-agent-mcp"
+        "@swo/mcp"
       ]
     }
   }

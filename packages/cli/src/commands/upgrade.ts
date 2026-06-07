@@ -420,6 +420,6 @@ export class UpgradeCommand {
     }
 
     console.log(pc.gray('\nOr run via npx (no install required):'));
-    console.log(pc.gray(`  npx swo-agent-toolkit@${version} sync`));
+    console.log(pc.gray(`  npx @swo/cli@${version} sync`));
   }
 }

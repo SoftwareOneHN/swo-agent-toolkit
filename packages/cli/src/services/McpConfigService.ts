@@ -28,8 +28,8 @@ export interface McpTarget {
   shape: 'map' | 'list';
 }
 
-export const SERVER_NAME = 'swo-agent-toolkit';
-export const PACKAGE = 'swo-agent-mcp';
+export const SERVER_NAME = 'swo-skills';
+export const PACKAGE = '@swo/mcp';
 
 const getTargets = (home = os.homedir()): Record<string, McpTarget> => {
   const HOME = home;

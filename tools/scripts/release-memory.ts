@@ -1,5 +1,5 @@
 /**
- * Release script for @swo/memory (swo-agent-memory)
+ * Release script for @swo/memory (@swo/memory)
  *
  * Usage: tsx tools/scripts/release-memory.ts [patch|minor|major]
  */

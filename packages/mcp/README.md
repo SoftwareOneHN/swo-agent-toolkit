@@ -1,4 +1,4 @@
-# swo-agent-mcp
+# @swo/mcp
 
 MCP server that lets any AI agent — Claude Code, Cursor, Antigravity, Kiro, Continue, Gemini CLI — load and audit skills from [swo-agent-toolkit](../README.md) via Model Context Protocol tool calls.
 
@@ -31,8 +31,8 @@ The server honours the same tier model as `swo-agent-toolkit`'s index generator:
 The easiest path is to let the CLI wire it for you:
 
 ```bash
-npx swo-agent-toolkit@latest init    # asks about MCP during setup
-npx swo-agent-toolkit@latest sync    # installs MCP at the chosen scope
+npx @swo/cli@latest init    # asks about MCP during setup
+npx @swo/cli@latest sync    # installs MCP at the chosen scope
 ```
 
 Or manage afterwards via the `mcp` subcommand:
@@ -47,7 +47,7 @@ ags mcp install             # Apply changes
 To install or run the MCP standalone:
 
 ```bash
-npx swo-agent-mcp
+npx @swo/mcp
 
 # Or build from source
 pnpm install && pnpm mcp:build
@@ -67,7 +67,7 @@ Add to `.mcp.json` (project-local) or `~/.claude/.mcp.json` (global):
   "mcpServers": {
     "swo-agent-toolkit": {
       "command": "npx",
-      "args": ["-y", "swo-agent-mcp"]
+      "args": ["-y", "@swo/mcp"]
     }
   }
 }
@@ -82,7 +82,7 @@ Add to `~/.cursor/mcp.json`:
   "mcpServers": {
     "swo-agent-toolkit": {
       "command": "npx",
-      "args": ["-y", "swo-agent-mcp"]
+      "args": ["-y", "@swo/mcp"]
     }
   }
 }
@@ -100,7 +100,7 @@ Add to `~/.continue/config.json` under `experimental.modelContextProtocolServers
         "transport": {
           "type": "stdio",
           "command": "npx",
-          "args": ["-y", "swo-agent-mcp"]
+          "args": ["-y", "@swo/mcp"]
         }
       }
     ]
@@ -117,7 +117,7 @@ Add to `~/.gemini/settings.json`:
   "mcpServers": {
     "swo-agent-toolkit": {
       "command": "npx",
-      "args": ["-y", "swo-agent-mcp"]
+      "args": ["-y", "@swo/mcp"]
     }
   }
 }
@@ -147,7 +147,7 @@ To run the MCP as a standalone HTTP service (e.g., for GoClaw agents):
 ```bash
 export MCP_TRANSPORT=sse
 export PORT=8768
-npx swo-agent-mcp
+npx @swo/mcp
 ```
 
 #### GoClaw Configuration

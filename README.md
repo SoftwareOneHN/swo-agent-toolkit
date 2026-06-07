@@ -7,19 +7,19 @@
 | Package | Purpose | npm |
 |---|---|---|
 | `@swo/cli` | Sync coding skills to any AI agent | `swo-agent-toolkit` |
-| `@swo/mcp` | Runtime skill enforcement (MCP server) | `swo-agent-mcp` |
-| `@swo/memory` | Persistent λ-decay memory (MCP server) | `swo-agent-memory` |
+| `@swo/mcp` | Runtime skill enforcement (MCP server) | `@swo/mcp` |
+| `@swo/memory` | Persistent λ-decay memory (MCP server) | `@swo/memory` |
 | `@swo/server` | REST API backend | Private |
 
 ## Quick Start
 
 ```bash
 # Install & sync coding skills
-npx swo-agent-toolkit@latest init
-npx swo-agent-toolkit@latest sync
+npx @swo/cli@latest init
+npx @swo/cli@latest sync
 
 # Start memory server (optional)
-npx swo-agent-memory
+npx @swo/memory
 ```
 
 ## What's Inside
