@@ -1,0 +1,442 @@
+import { Agent, Framework } from './enums';
+
+export { Agent, Framework };
+
+export const UNIVERSAL_SKILLS = ['common'];
+export const BACKEND_FRAMEWORKS: Framework[] = [
+  Framework.NestJS,
+  Framework.Golang,
+  Framework.SpringBoot,
+  Framework.Laravel,
+];
+
+export const FRONTEND_FRAMEWORKS: Framework[] = [
+  Framework.React,
+  Framework.NextJS,
+  Framework.Angular,
+];
+
+export const MOBILE_FRAMEWORKS: Framework[] = [
+  Framework.Flutter,
+  Framework.Android,
+  Framework.iOS,
+  Framework.ReactNative,
+];
+
+export const FRONTEND_REACT_FRAMEWORKS: Framework[] = [
+  Framework.NextJS,
+  Framework.ReactNative,
+];
+
+/**
+ * Sub-skills to exclude from the `common` category based on the selected framework type.
+ * Backend: exclude web-only and mobile-only skills.
+ * Frontend: exclude backend-only and mobile-only skills.
+ * Mobile: exclude web-only and backend-only skills.
+ */
+export const COMMON_SKILL_EXCLUDES: Record<
+  'backend' | 'frontend' | 'mobile',
+  string[]
+> = {
+  backend: [
+    'common-accessibility',
+    'common-mobile-animation',
+    'common-mobile-ux-core',
+    'common-store-changelog',
+    'common-ui-design',
+  ],
+  frontend: [
+    'common-observability',
+    'common-mobile-animation',
+    'common-mobile-ux-core',
+    'common-store-changelog',
+  ],
+  mobile: [
+    'common-accessibility',
+    'common-api-design',
+    'common-observability',
+    'common-system-design',
+  ],
+};
+
+/**
+ * Classifies a framework ID into its platform type for skill exclusion purposes.
+ * Returns null for unknown/hybrid frameworks — no exclusions are applied.
+ */
+export function getFrameworkType(
+  framework: string,
+): 'backend' | 'frontend' | 'mobile' | null {
+  if (BACKEND_FRAMEWORKS.includes(framework as Framework)) return 'backend';
+  if (MOBILE_FRAMEWORKS.includes(framework as Framework)) return 'mobile';
+  if (FRONTEND_FRAMEWORKS.includes(framework as Framework)) return 'frontend';
+  return null;
+}
+
+export const DEFAULT_REGISTER =
+  'https://github.com/SoftwareOneHN/swo-agent-toolkit';
+
+export const DEFAULT_WORKFLOWS = [
+  'sdlc',
+  'brainstorm-feature',
+  'code-review',
+  'codebase-review',
+  'design-solution',
+  'deploy-release',
+  'plan-feature',
+  'implementation-readiness',
+  'review-ticket',
+  'traceability-audit',
+  'session-report',
+  'publish-notes',
+  'retro-learn',
+  'skill-benchmark',
+  'pentest',
+  'dev-fix',
+  'implement-feature',
+  'verify-work',
+  'verify-bug',
+  'security-test',
+];
+
+// Configurable via ENV or hardcoded for production convenience
+/**
+ * Defines how workflows are delivered to each agent platform.
+ * Workflows are user-invoked multi-step procedures (not passive rules).
+ * - 'native':  Direct markdown workflow files, executed by the agent's workflow runner (Antigravity, Kiro)
+ * - 'command': Custom slash command files — inline the procedure (Claude: .claude/commands/*.md)
+ * - 'toml':    TOML command files — reference the workflow by path (Gemini: .gemini/commands/*.toml)
+ * - 'prompt':  Reusable prompt files (Copilot: .github/prompts/*.prompt.md)
+ * - 'none':    Agent has no verified user-invoked command system
+ */
+export type WorkflowFormat =
+  | 'native'
+  | 'command'
+  | 'toml'
+  | 'prompt'
+  | 'skill'
+  | 'none';
+
+export interface AgentDefinition {
+  id: Agent;
+  name: string;
+  path: string;
+  ruleFile: string;
+  ruleExtension: string;
+  ruleFileName?: string;
+  frontmatterStyle: 'cursor' | 'copilot' | 'none';
+  detectionFiles: string[];
+  /** How workflows should be transformed for this agent */
+  workflowFormat: WorkflowFormat;
+  /** Directory where transformed workflows are written (relative to cwd) */
+  workflowPath: string;
+  /** Directory where native specialist agent personas are written (optional) */
+  agentPath?: string;
+  /** Relative path to pre-edit hook reminder script (if supported) */
+  hookScriptPath?: string;
+  /** Relative path to hook configuration JSON file (if supported) */
+  hookConfigPath?: string;
+}
+
+export interface FrameworkDefinition {
+  id: Framework;
+  name: string;
+  languages: string[];
+  detectionFiles: string[];
+  detectionDependencies?: string[];
+  languageDetection?: Record<string, string[]>;
+}
+
+export const getAgentDefinition = (id: Agent): AgentDefinition => {
+  switch (id) {
+    case Agent.Cursor:
+      return {
+        id,
+        name: 'Cursor',
+        path: '.cursor/skills',
+        ruleFile: '.cursor/rules',
+        ruleExtension: '.mdc',
+        frontmatterStyle: 'cursor',
+        detectionFiles: ['.cursor', '.cursorrules'],
+        workflowFormat: 'skill',
+        workflowPath: '.cursor/skills',
+        agentPath: '.cursor/agents',
+        hookScriptPath: '.cursor/hooks/preedit-skill-loader.js',
+        hookConfigPath: '.cursor/hooks.json',
+      };
+    case Agent.Trae:
+      return {
+        id,
+        name: 'Trae',
+        path: '.trae/skills',
+        ruleFile: '.trae/rules',
+        ruleExtension: '.mdc',
+        frontmatterStyle: 'cursor',
+        detectionFiles: ['.trae'],
+        workflowFormat: 'skill',
+        workflowPath: '.trae/skills',
+      };
+    case Agent.Claude:
+      return {
+        id,
+        name: 'Claude Code',
+        path: '.claude/skills',
+        ruleFile: '.',
+        ruleExtension: '.md',
+        ruleFileName: 'CLAUDE.md',
+        frontmatterStyle: 'none',
+        detectionFiles: ['.claude'],
+        workflowFormat: 'command',
+        workflowPath: '.claude/commands',
+        agentPath: '.claude/agents',
+        hookScriptPath: '.claude/hooks/preedit-skill-loader.js',
+        hookConfigPath: '.claude/settings.json',
+      };
+    case Agent.Copilot:
+      return {
+        id,
+        name: 'GitHub Copilot',
+        path: '.github/skills',
+        ruleFile: '.github/instructions',
+        ruleExtension: '.instructions.md',
+        frontmatterStyle: 'copilot',
+        detectionFiles: ['.github'],
+        workflowFormat: 'prompt',
+        workflowPath: '.github/prompts',
+        agentPath: '.github/copilot-agents',
+        hookScriptPath: '.github/hooks/preedit-skill-loader.js',
+        hookConfigPath: '.github/hooks.json',
+      };
+    case Agent.Antigravity:
+      return {
+        id,
+        name: 'Antigravity',
+        path: '.agents/skills',
+        ruleFile: '.agents/rules',
+        ruleExtension: '.md',
+        frontmatterStyle: 'cursor',
+        detectionFiles: ['.agents'],
+        workflowFormat: 'native',
+        workflowPath: '.agents/workflows',
+      };
+    case Agent.Codex:
+      return {
+        id,
+        name: 'Codex',
+        path: '.codex/skills',
+        ruleFile: '.codex/rules',
+        ruleExtension: '.md',
+        frontmatterStyle: 'cursor',
+        detectionFiles: ['.codex'],
+        workflowFormat: 'skill',
+        workflowPath: '.codex/skills',
+        agentPath: '.codex/agents',
+        hookScriptPath: '.codex/hooks/preedit-skill-loader.js',
+        hookConfigPath: '.codex/hooks.json',
+      };
+    case Agent.OpenCode:
+      return {
+        id,
+        name: 'OpenCode',
+        path: '.opencode/skills',
+        ruleFile: '.opencode/rules',
+        ruleExtension: '.md',
+        frontmatterStyle: 'cursor',
+        detectionFiles: ['.opencode'],
+        workflowFormat: 'command',
+        workflowPath: '.opencode/commands',
+        agentPath: '.opencode/agents',
+      };
+    case Agent.Gemini:
+      return {
+        id,
+        name: 'Gemini',
+        path: '.gemini/skills',
+        ruleFile: '.gemini/rules',
+        ruleExtension: '.md',
+        frontmatterStyle: 'cursor',
+        detectionFiles: ['.gemini'],
+        workflowFormat: 'toml',
+        workflowPath: '.gemini/commands',
+        agentPath: '.gemini/agents',
+        hookScriptPath: '.gemini/hooks/preedit-skill-loader.js',
+        hookConfigPath: '.gemini/hooks.json',
+      };
+    case Agent.Roo:
+      return {
+        id,
+        name: 'Roo Code',
+        path: '.roo/skills',
+        ruleFile: '.roo/rules',
+        ruleExtension: '.md',
+        frontmatterStyle: 'cursor',
+        detectionFiles: ['.roo'],
+        workflowFormat: 'command',
+        workflowPath: '.roo/commands',
+      };
+    case Agent.Windsurf:
+      return {
+        id,
+        name: 'Windsurf',
+        path: '.windsurf/skills',
+        ruleFile: '.windsurf/rules',
+        ruleExtension: '.md',
+        frontmatterStyle: 'cursor',
+        detectionFiles: ['.windsurf'],
+        workflowFormat: 'none',
+        workflowPath: '',
+        hookScriptPath: '.windsurf/hooks/preedit-skill-loader.js',
+        hookConfigPath: '.windsurf/hooks.json',
+      };
+    case Agent.Kiro:
+      return {
+        id,
+        name: 'Kiro',
+        path: '.kiro/skills',
+        ruleFile: '.kiro/rules',
+        ruleExtension: '.md',
+        frontmatterStyle: 'cursor',
+        detectionFiles: ['.kiro'],
+        workflowFormat: 'native',
+        workflowPath: '.agents/workflows',
+        agentPath: '.kiro/agents',
+        hookScriptPath: '.kiro/hooks/ags-skill-loader.md',
+      };
+  }
+};
+
+export const getFrameworkDefinition = (id: Framework): FrameworkDefinition => {
+  switch (id) {
+    case Framework.Flutter:
+      return {
+        id,
+        name: 'Flutter',
+        languages: ['dart'],
+        detectionFiles: ['pubspec.yaml'],
+      };
+    case Framework.NestJS:
+      return {
+        id,
+        name: 'NestJS',
+        languages: ['typescript', 'javascript'],
+        detectionFiles: ['nest-cli.json'],
+        detectionDependencies: ['@nestjs/core'],
+        languageDetection: {
+          typescript: ['tsconfig.json'],
+          javascript: ['jsconfig.json'],
+        },
+      };
+    case Framework.Golang:
+      return {
+        id,
+        name: 'Go (Golang)',
+        languages: ['go'],
+        detectionFiles: ['go.mod'],
+      };
+    case Framework.NextJS:
+      return {
+        id,
+        name: 'Next.js',
+        languages: ['typescript', 'javascript'],
+        detectionFiles: ['next.config.js', 'next.config.mjs'],
+        detectionDependencies: ['next'],
+        languageDetection: {
+          typescript: ['tsconfig.json'],
+          javascript: ['jsconfig.json'],
+        },
+      };
+    case Framework.React:
+      return {
+        id,
+        name: 'React',
+        languages: ['typescript', 'javascript'],
+        detectionFiles: [],
+        detectionDependencies: ['react', 'react-dom'],
+        languageDetection: {
+          typescript: ['tsconfig.json'],
+          javascript: ['jsconfig.json'],
+        },
+      };
+    case Framework.ReactNative:
+      return {
+        id,
+        name: 'React Native',
+        languages: ['typescript', 'javascript'],
+        detectionFiles: ['metro.config.js'],
+        detectionDependencies: ['react-native'],
+        languageDetection: {
+          typescript: ['tsconfig.json'],
+          javascript: ['jsconfig.json'],
+        },
+      };
+    case Framework.Angular:
+      return {
+        id,
+        name: 'Angular',
+        languages: ['typescript'],
+        detectionFiles: ['angular.json'],
+      };
+    case Framework.SpringBoot:
+      return {
+        id,
+        name: 'Spring Boot',
+        languages: ['java', 'kotlin'],
+        detectionFiles: ['pom.xml', 'build.gradle', 'build.gradle.kts'],
+        languageDetection: {
+          kotlin: ['src/main/kotlin', 'build.gradle.kts'],
+          java: ['src/main/java'],
+        },
+      };
+    case Framework.Android:
+      return {
+        id,
+        name: 'Android',
+        languages: ['kotlin', 'java'],
+        detectionFiles: [
+          'build.gradle',
+          'build.gradle.kts',
+          'AndroidManifest.xml',
+        ],
+        languageDetection: {
+          kotlin: ['src/main/kotlin', 'build.gradle.kts'],
+          java: ['src/main/java'],
+        },
+      };
+    case Framework.iOS:
+      return {
+        id,
+        name: 'iOS (Swift/SwiftUI)',
+        languages: ['swift'],
+        detectionFiles: [
+          'Podfile',
+          'Package.swift',
+          'project.pbxproj',
+          'Info.plist',
+        ],
+        languageDetection: {
+          swift: ['.swift'],
+        },
+      };
+    case Framework.Laravel:
+      return {
+        id,
+        name: 'Laravel',
+        languages: ['php', 'javascript'],
+        detectionFiles: ['composer.json', 'artisan'],
+        detectionDependencies: ['laravel/framework'],
+        languageDetection: {
+          php: ['.php'],
+          javascript: ['resources/js', 'vite.config.js'],
+        },
+      };
+  }
+};
+
+export const SUPPORTED_AGENTS: AgentDefinition[] =
+  Object.values(Agent).map(getAgentDefinition);
+
+export const SUPPORTED_FRAMEWORKS: FrameworkDefinition[] = Object.values(
+  Framework,
+).map(getFrameworkDefinition);
+
+export { SKILL_DETECTION_REGISTRY } from './skills';
+export type { SkillDetection } from './skills';

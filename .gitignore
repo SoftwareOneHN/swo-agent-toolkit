@@ -1,0 +1,29 @@
+# Dependencies & build output
+node_modules/
+dist/
+build/
+.pnpm-store
+
+# Memory database files
+*.db
+*.db-shm
+*.db-wal
+embed_stats.json
+access_rules.json
+
+# Memory vault (personal data)
+lob-vault/
+test-vault/
+
+# Secrets & environment
+.env
+.env.local
+.env.*.local
+
+# OS & editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Temp
+temp_*/

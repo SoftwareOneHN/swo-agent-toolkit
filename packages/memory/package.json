@@ -1,0 +1,53 @@
+{
+  "name": "@swo/memory",
+  "version": "1.0.0",
+  "description": "SWO Agent Memory — MCP Server with λ-decay persistent memory",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "swo-memory": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "start:sse": "node dist/index.js --sse --port 3020",
+    "dev": "tsx src/index.ts",
+    "dev:sse": "tsx src/index.ts --sse --port 3020",
+    "test": "tsx --test tests/*.test.ts",
+    "lint": "eslint \"src/**/*.ts\" --fix",
+    "lint:check": "eslint \"src/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\""
+  },
+  "keywords": [
+    "mcp",
+    "ai",
+    "memory",
+    "lambda-decay",
+    "persistent",
+    "swo"
+  ],
+  "author": "SoftwareOne",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "better-sqlite3": "^12.8.0",
+    "express": "^5.2.1",
+    "yaml": "^2.8.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "swo-agent-toolkit": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "swo-agent-mcp"
+      ]
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    }
+  }
+}

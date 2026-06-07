@@ -1,0 +1,14 @@
+{
+  "chat.tools.terminal.autoApprove": {
+    "mkdir": true,
+    "npx vitest": true,
+    "rtk": true,
+    "type": true,
+    "ags": true,
+    "pnpm": true
+  },
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  }
+}
